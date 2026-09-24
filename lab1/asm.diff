@@ -1,0 +1,255 @@
+--- main_O2.s	2026-09-24 18:09:46.083624592 +0000
++++ main_bp.s	2026-09-24 18:09:46.131624592 +0000
+@@ -1,6 +1,10 @@
+ 	.file	"main.c"
+ 	.intel_syntax noprefix
+ 	.text
++	.section	.text.unlikely,"ax",@progbits
++.LCOLDB0:
++	.section	.text.hot,"ax",@progbits
++.LHOTB0:
+ 	.p2align 4
+ 	.globl	process
+ 	.type	process, @function
+@@ -9,56 +13,68 @@
+ 	.cfi_startproc
+ 	endbr64
+ 	mov	r8, rdi
+-	test	esi, esi
++	movsx	rdi, esi
++	test	edi, edi
+ 	jle	.L8
+-	movsx	rsi, esi
+-	xor	edi, edi
+-	xor	eax, eax
++	xor	ecx, ecx
++	xor	edx, edx
+ 	jmp	.L7
+ 	.p2align 4,,10
+ 	.p2align 3
+-.L3:
+-	lea	ecx, 0[0+rdx*8]
+-	sub	ecx, edx
+-	movsx	rcx, ecx
+-	lea	rdx, [rcx+rax]
+-	lea	rax, 0[0+rdx*8]
+-	sar	rdx, 60
+-	or	rax, rdx
+-.L6:
+-	add	rax, rdi
+-	add	rdi, 1
+-	cmp	rsi, rdi
+-	je	.L15
+-.L7:
+-	mov	edx, DWORD PTR [r8+rdi*4]
+-	test	edx, edx
+-	jns	.L3
+-	mov	ecx, edx
+-	neg	ecx
+-	movsx	rcx, ecx
+-	add	rax, rcx
+-	movsx	rcx, edx
+-	xor	rcx, rax
+-	test	dl, 1
+-	cmove	rax, rcx
+-	cmp	edx, -1000
++.L14:
++	mov	esi, eax
++	neg	esi
++	movsx	rsi, esi
++	add	rdx, rsi
++	test	al, 1
++	jne	.L4
++	movsx	rsi, eax
++	xor	rdx, rsi
++.L4:
++	cmp	eax, -1000
+ 	jne	.L6
+-	add	rdi, 1
+-	cmp	rsi, rdi
++	add	rcx, 1
++	cmp	rdi, rcx
++	je	.L1
++.L7:
++	mov	eax, DWORD PTR [r8+rcx*4]
++	test	eax, eax
++	js	.L14
++	lea	esi, 0[0+rax*8]
++	sub	esi, eax
++	movsx	rax, esi
++	add	rax, rdx
++	lea	rdx, 0[0+rax*8]
++	sar	rax, 60
++	or	rdx, rax
++.L6:
++	add	rdx, rcx
++	add	rcx, 1
++	cmp	rdi, rcx
+ 	jne	.L7
+-.L15:
++.L1:
++	mov	rax, rdx
+ 	ret
+-	.p2align 4,,10
+-	.p2align 3
++	.cfi_endproc
++	.section	.text.unlikely
++	.cfi_startproc
++	.type	process.cold, @function
++process.cold:
++.LFSB40:
+ .L8:
+-	xor	eax, eax
+-	ret
++	xor	edx, edx
++	jmp	.L1
+ 	.cfi_endproc
+ .LFE40:
++	.section	.text.hot
+ 	.size	process, .-process
++	.section	.text.unlikely
++	.size	process.cold, .-process.cold
++.LCOLDE0:
++	.section	.text.hot
++.LHOTE0:
+ 	.section	.rodata.str1.1,"aMS",@progbits,1
+-.LC0:
++.LC1:
+ 	.string	"result = %ld, cycles = %llu\n"
+ 	.section	.text.startup,"ax",@progbits
+ 	.p2align 4
+@@ -82,75 +98,75 @@
+ 	.cfi_def_cfa_offset 40
+ 	.cfi_offset 3, -40
+ 	mov	rsi, rbp
+-	lea	rdi, 16384[rbp]
+-	sub	rsp, 8
++	lea	r8, 16384[rbp]
++	push	rcx
+ 	.cfi_def_cfa_offset 48
+-	mov	eax, DWORD PTR seed[rip]
+-	jmp	.L19
++	mov	ecx, DWORD PTR seed[rip]
++	jmp	.L18
+ 	.p2align 4,,10
+ 	.p2align 3
+-.L26:
+-	imul	eax, eax, 1103515245
+-	add	eax, 12345
+-	mov	ecx, eax
+-	shr	ecx, 16
+-	and	ecx, 32767
+-.L18:
+-	mov	DWORD PTR [rsi], ecx
++.L16:
++	cmp	eax, 1
++	je	.L24
++	mov	eax, -1000
++.L17:
++	mov	DWORD PTR [rsi], eax
+ 	add	rsi, 4
+-	cmp	rdi, rsi
++	cmp	r8, rsi
+ 	je	.L25
+-.L19:
+-	imul	eax, eax, 1103515245
+-	add	eax, 12345
+-	mov	ecx, eax
+-	shr	ecx, 16
+-	and	ecx, 32767
+-	mov	edx, ecx
+-	imul	rdx, rdx, 1374389535
+-	shr	rdx, 37
+-	imul	r8d, edx, 100
++.L18:
++	imul	ecx, ecx, 1103515245
++	add	ecx, 12345
+ 	mov	edx, ecx
+-	sub	edx, r8d
+-	je	.L26
+-	mov	ecx, -1000
+-	cmp	edx, 1
+-	jne	.L18
+-	imul	eax, eax, 1103515245
+-	add	rsi, 4
+-	add	eax, 12345
+-	mov	ecx, eax
+-	shr	ecx, 16
+-	and	ecx, 32767
+-	not	ecx
+-	mov	DWORD PTR -4[rsi], ecx
+-	cmp	rdi, rsi
+-	jne	.L19
++	shr	edx, 16
++	and	edx, 32767
++	mov	eax, edx
++	imul	rax, rax, 1374389535
++	shr	rax, 37
++	imul	edi, eax, 100
++	mov	eax, edx
++	sub	eax, edi
++	jne	.L16
++	imul	ecx, ecx, 1103515245
++	add	ecx, 12345
++	mov	eax, ecx
++	shr	eax, 16
++	and	eax, 32767
++	jmp	.L17
++.L24:
++	imul	ecx, ecx, 1103515245
++	add	ecx, 12345
++	mov	eax, ecx
++	shr	eax, 16
++	and	eax, 32767
++	not	eax
++	jmp	.L17
+ .L25:
+-	mov	DWORD PTR seed[rip], eax
++	mov	DWORD PTR seed[rip], ecx
+ #APP
+ # 47 "main.c" 1
+ 	CPUID
+ 	RDTSC
+-	mov %edx, r13d
++	mov %edx, edi
+ 	mov %eax, esi
+ 	
+ # 0 "" 2
+ #NO_APP
+-	sal	r13, 32
++	sal	rdi, 32
+ 	mov	esi, esi
+ 	mov	ebx, 2000
+ 	xor	r12d, r12d
+-	or	r13, rsi
++	or	rdi, rsi
++	mov	r13, rdi
+ 	.p2align 4,,10
+ 	.p2align 3
+-.L20:
++.L19:
+ 	mov	esi, 4096
+ 	mov	rdi, rbp
+ 	call	process
+ 	add	r12, rax
+ 	sub	ebx, 1
+-	jne	.L20
++	jne	.L19
+ #APP
+ # 58 "main.c" 1
+ 	RDTSCP
+@@ -165,12 +181,12 @@
+ 	mov	rdx, r12
+ 	xor	eax, eax
+ 	sal	rcx, 32
+-	lea	rsi, .LC0[rip]
++	lea	rsi, .LC1[rip]
+ 	or	rcx, rdi
+ 	mov	edi, 2
+ 	sub	rcx, r13
+ 	call	__printf_chk@PLT
+-	add	rsp, 8
++	pop	rdx
+ 	.cfi_def_cfa_offset 40
+ 	xor	eax, eax
+ 	pop	rbx

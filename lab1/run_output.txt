@@ -1,0 +1,26 @@
+ 1  -O2: result = -752270000, cycles = 28438998    -O2 -fbranch-probabilities: result = -752270000, cycles = 24666062
+ 2  -O2: result = -752270000, cycles = 27743774    -O2 -fbranch-probabilities: result = -752270000, cycles = 25114844
+ 3  -O2: result = -752270000, cycles = 28420916    -O2 -fbranch-probabilities: result = -752270000, cycles = 24219770
+ 4  -O2: result = -752270000, cycles = 28265652    -O2 -fbranch-probabilities: result = -752270000, cycles = 25680926
+ 5  -O2: result = -752270000, cycles = 27575782    -O2 -fbranch-probabilities: result = -752270000, cycles = 24199236
+ 6  -O2: result = -752270000, cycles = 29534638    -O2 -fbranch-probabilities: result = -752270000, cycles = 24102184
+ 7  -O2: result = -752270000, cycles = 28315398    -O2 -fbranch-probabilities: result = -752270000, cycles = 24178316
+ 8  -O2: result = -752270000, cycles = 28426204    -O2 -fbranch-probabilities: result = -752270000, cycles = 23885526
+ 9  -O2: result = -752270000, cycles = 30705342    -O2 -fbranch-probabilities: result = -752270000, cycles = 24453222
+10  -O2: result = -752270000, cycles = 43792996    -O2 -fbranch-probabilities: result = -752270000, cycles = 24474706
+11  -O2: result = -752270000, cycles = 28204584    -O2 -fbranch-probabilities: result = -752270000, cycles = 24112536
+12  -O2: result = -752270000, cycles = 27963980    -O2 -fbranch-probabilities: result = -752270000, cycles = 23903634
+13  -O2: result = -752270000, cycles = 30399322    -O2 -fbranch-probabilities: result = -752270000, cycles = 23829172
+14  -O2: result = -752270000, cycles = 27552602    -O2 -fbranch-probabilities: result = -752270000, cycles = 28583960
+15  -O2: result = -752270000, cycles = 27865754    -O2 -fbranch-probabilities: result = -752270000, cycles = 24614218
+16  -O2: result = -752270000, cycles = 30424464    -O2 -fbranch-probabilities: result = -752270000, cycles = 24093874
+17  -O2: result = -752270000, cycles = 28000490    -O2 -fbranch-probabilities: result = -752270000, cycles = 25112456
+18  -O2: result = -752270000, cycles = 27834960    -O2 -fbranch-probabilities: result = -752270000, cycles = 25630428
+19  -O2: result = -752270000, cycles = 28944108    -O2 -fbranch-probabilities: result = -752270000, cycles = 25126378
+20  -O2: result = -752270000, cycles = 27625730    -O2 -fbranch-probabilities: result = -752270000, cycles = 24014360
+
+                                      min       median          avg          max
+-O2                              27552602     28290525     29301784     43792996
+-O2 -fbranch-probabilities       23829172     24336496     24699790     28583960
+
+Ускорение: по минимуму 1.16x, по медиане 1.16x, по среднему 1.19x

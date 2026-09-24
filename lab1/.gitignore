@@ -1,0 +1,6 @@
+*.o
+*.gcda
+*.gcno
+main_O2
+main_bp
+main_prof
