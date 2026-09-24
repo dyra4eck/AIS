@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1050 600" width="1050" height="600" font-family="Arial, Helvetica, sans-serif" font-size="12">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+    </marker>
+    <style>
+      .blk{fill:#eef4fb;stroke:#2c3e50;stroke-width:1.4}
+      .rf{fill:#e8f6ec;stroke:#2c3e50;stroke-width:1.4}
+      .reg{fill:#fdf2d0;stroke:#8a6d1a;stroke-width:1.4}
+      .ext{fill:#f7f7f7;stroke:#555;stroke-width:1.4;stroke-dasharray:6 4}
+      .ctl{fill:#fbe9e7;stroke:#c0392b;stroke-width:1.6}
+      .w{stroke:#333;stroke-width:1.3;fill:none;marker-end:url(#a)}
+      .c{stroke:#c0392b;stroke-width:1.3;fill:none;stroke-dasharray:5 3;marker-end:url(#r)}
+      .t{text-anchor:middle}
+      .s{font-size:10.5px;fill:#333}
+      .h{font-weight:bold}
+      .cr{fill:#c0392b}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1050" height="600" fill="#fff"/>
+
+  <!-- рамка ядра -->
+  <rect x="165" y="40" width="700" height="545" fill="none" stroke="#2c3e50" stroke-width="2" rx="6"/>
+  <text x="515" y="28" class="t h" font-size="14">Процессорное ядро (суперскалярная архитектура, 3 конвейера по 4 ступени)</text>
+
+  <!-- блок разрешения конфликта по управлению -->
+  <rect class="ctl" x="180" y="52" width="480" height="66" rx="4"/>
+  <text x="420" y="70" class="t h cr">Блок разрешения конфликта по управлению</text>
+  <text x="420" y="87" class="t s">predict: предсказание «не выполняется»; при выполненном JL — аннулирование более</text>
+  <text x="420" y="100" class="t s">поздних слотов группы на EX, сброс групп на OF и IF, PC := адрес перехода (потери 2 такта)</text>
+  <text x="420" y="113" class="t s">stall: группа обрывается после JL, выборка ждёт, пока JL на OF и EX (2 такта)</text>
+
+  <!-- управляющие сигналы -->
+  <path class="c" d="M240,118 L240,170"/>
+  <text x="246" y="150" class="s cr">PC / stall</text>
+  <path class="c" d="M324,118 L324,140"/>
+  <path class="c" d="M489,118 L489,140"/>
+  <text x="330" y="134" class="s cr">сброс</text>
+  <text x="495" y="134" class="s cr">сброс</text>
+  <path class="c" d="M560,118 L560,160"/>
+  <text x="566" y="140" class="s cr">аннул.</text>
+  <path class="c" d="M642,175 L652,175 L652,90 L662,90" style="marker-end:none"/>
+  <path class="c" d="M652,90 L661,90"/>
+  <text x="668" y="80" class="s cr">JL: условие,</text>
+  <text x="668" y="93" class="s cr">адрес перехода</text>
+
+  <!-- память команд -->
+  <rect class="ext" x="15" y="195" width="130" height="110" rx="4"/>
+  <text x="80" y="224" class="t h">Память команд</text>
+  <text x="80" y="242" class="t s">256 × 16 бит</text>
+  <text x="80" y="260" class="t s">3 команды за такт:</text>
+  <text x="80" y="276" class="t s">[PC], [PC+1], [PC+2]</text>
+
+  <!-- выборка -->
+  <rect class="blk" x="180" y="170" width="120" height="180" rx="4"/>
+  <text x="240" y="190" class="t h">Выборка (IF)</text>
+  <rect class="reg" x="195" y="200" width="90" height="28" rx="3"/>
+  <text x="240" y="218" class="t">PC</text>
+  <text x="240" y="250" class="t s">PC := PC + 3</text>
+  <text x="240" y="265" class="t s">(stall: PC + k,</text>
+  <text x="240" y="279" class="t s">k — до JL включ.)</text>
+  <text x="240" y="300" class="t s">или адрес</text>
+  <text x="240" y="314" class="t s">перехода</text>
+  <path class="w" d="M180,240 L145,240"/>
+  <text x="162" y="234" class="t s">PC</text>
+  <path class="w" d="M145,270 L180,270"/>
+
+  <!-- IF/OF -->
+  <rect class="reg" x="315" y="140" width="18" height="310" rx="2"/>
+  <text x="324" y="464" class="t s">IF/OF</text>
+  <path class="w" d="M300,190 L315,190"/>
+  <path class="w" d="M300,290 L315,290"/>
+  <path class="w" d="M300,340 L308,340 L308,390 L315,390"/>
+
+  <!-- OF -->
+  <rect class="blk" x="345" y="160" width="120" height="60" rx="4"/>
+  <text x="405" y="184" class="t h">OF 0</text>
+  <text x="405" y="202" class="t s">декодер, чтение Rn</text>
+  <rect class="blk" x="345" y="260" width="120" height="60" rx="4"/>
+  <text x="405" y="284" class="t h">OF 1</text>
+  <text x="405" y="302" class="t s">декодер, чтение Rn</text>
+  <rect class="blk" x="345" y="360" width="120" height="60" rx="4"/>
+  <text x="405" y="384" class="t h">OF 2</text>
+  <text x="405" y="402" class="t s">декодер, чтение Rn</text>
+  <path class="w" d="M333,190 L345,190"/>
+  <path class="w" d="M333,290 L345,290"/>
+  <path class="w" d="M333,390 L345,390"/>
+
+  <!-- OF/EX -->
+  <rect class="reg" x="480" y="140" width="18" height="310" rx="2"/>
+  <text x="489" y="464" class="t s">OF/EX</text>
+  <path class="w" d="M465,190 L480,190"/>
+  <path class="w" d="M465,290 L480,290"/>
+  <path class="w" d="M465,390 L480,390"/>
+
+  <!-- EX -->
+  <rect class="blk" x="512" y="160" width="130" height="60" rx="4"/>
+  <text x="577" y="180" class="t h">EX 0</text>
+  <text x="577" y="196" class="t s">АЛУ (+, −), LOAD,</text>
+  <text x="577" y="210" class="t s">условие JL (N xor V)</text>
+  <rect class="blk" x="512" y="260" width="130" height="60" rx="4"/>
+  <text x="577" y="280" class="t h">EX 1</text>
+  <text x="577" y="296" class="t s">АЛУ (+, −), LOAD,</text>
+  <text x="577" y="310" class="t s">условие JL (N xor V)</text>
+  <rect class="blk" x="512" y="360" width="130" height="60" rx="4"/>
+  <text x="577" y="380" class="t h">EX 2</text>
+  <text x="577" y="396" class="t s">АЛУ (+, −), LOAD,</text>
+  <text x="577" y="410" class="t s">условие JL (N xor V)</text>
+  <path class="w" d="M498,190 L512,190"/>
+  <path class="w" d="M498,290 L512,290"/>
+  <path class="w" d="M498,390 L512,390"/>
+  <!-- цепочка флагов -->
+  <path class="w" d="M610,220 L610,260"/>
+  <path class="w" d="M610,320 L610,360"/>
+  <text x="616" y="244" class="s">флаги</text>
+  <text x="616" y="344" class="s">флаги</text>
+
+  <!-- регистр флагов -->
+  <rect class="reg" x="512" y="436" width="130" height="28" rx="3"/>
+  <text x="577" y="454" class="t s">Регистр флагов Z N V C</text>
+  <path class="w" d="M610,420 L610,436"/>
+  <path class="w" d="M512,450 L505,450 L505,172 L512,172"/>
+
+  <!-- EX/WB -->
+  <rect class="reg" x="672" y="140" width="18" height="310" rx="2"/>
+  <text x="681" y="464" class="t s">EX/WB</text>
+  <path class="w" d="M642,190 L672,190"/>
+  <path class="w" d="M642,290 L672,290"/>
+  <path class="w" d="M642,390 L672,390"/>
+
+  <!-- WB -->
+  <rect class="blk" x="705" y="160" width="130" height="60" rx="4"/>
+  <text x="770" y="184" class="t h">WB 0</text>
+  <text x="770" y="202" class="t s">запись Rn / STORE</text>
+  <rect class="blk" x="705" y="260" width="130" height="60" rx="4"/>
+  <text x="770" y="284" class="t h">WB 1</text>
+  <text x="770" y="302" class="t s">запись Rn / STORE</text>
+  <rect class="blk" x="705" y="360" width="130" height="60" rx="4"/>
+  <text x="770" y="384" class="t h">WB 2</text>
+  <text x="770" y="402" class="t s">запись Rn / STORE</text>
+  <path class="w" d="M690,190 L705,190"/>
+  <path class="w" d="M690,290 L705,290"/>
+  <path class="w" d="M690,390 L705,390"/>
+
+  <!-- регистры общего назначения -->
+  <rect class="rf" x="345" y="490" width="490" height="46" rx="4"/>
+  <text x="590" y="510" class="t h">Регистры общего назначения R0 … R15 (16 × 16 бит)</text>
+  <text x="590" y="527" class="t s">6 портов чтения (OF), 3 порта записи (WB), передача WB → OF в том же такте</text>
+  <path class="w" d="M770,420 L770,490"/>
+  <path class="w" d="M405,490 L405,420"/>
+  <text x="776" y="470" class="s">запись</text>
+  <text x="411" y="470" class="s">чтение</text>
+
+  <!-- память данных -->
+  <rect class="ext" x="895" y="175" width="140" height="120" rx="4"/>
+  <text x="965" y="203" class="t h">Память данных</text>
+  <text x="965" y="221" class="t s">256 × 16 бит</text>
+  <text x="965" y="239" class="t s">3 порта чтения (EX)</text>
+  <text x="965" y="255" class="t s">3 порта записи (WB)</text>
+  <path class="w" d="M835,230 L895,230"/>
+  <text x="842" y="224" class="s">STORE</text>
+  <path class="w" d="M895,190 L875,190 L875,150 L625,150 L625,160"/>
+  <text x="842" y="144" class="s">LOAD</text>
+
+  <!-- легенда -->
+  <rect class="ext" x="885" y="440" width="22" height="14"/><text x="913" y="451" class="s">внешний компонент</text>
+  <rect class="reg" x="885" y="462" width="22" height="14"/><text x="913" y="473" class="s">регистр</text>
+  <rect class="ctl" x="885" y="484" width="22" height="14"/><text x="913" y="495" class="s">управление</text>
+  <line x1="885" y1="514" x2="907" y2="514" class="c"/><text x="913" y="518" class="s">сигналы управления</text>
+  <text x="885" y="545" class="s">Связи с памятью данных и</text>
+  <text x="885" y="558" class="s">блоком управления есть у всех</text>
+  <text x="885" y="571" class="s">3 конвейеров (показаны для 0)</text>
+</svg>

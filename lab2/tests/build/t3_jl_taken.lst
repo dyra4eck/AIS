@@ -1,0 +1,102 @@
+; t3_jl_taken: program 81 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  1210             LOAD  R2, (R1)
+    7     2  3310             ADD   R3, R1
+    8     2  3810             ADD   R8, R1
+    9     3  0000             NOP
+   10     3  0000             NOP
+   11     3  0000             NOP
+   12     4  3310             ADD   R3, R1
+   13     4  3880             ADD   R8, R8
+   14     4  3420             ADD   R4, R2
+   15     5  0000             NOP
+   16     5  0000             NOP
+   17     5  0000             NOP
+   18     6  1530             LOAD  R5, (R3)
+   19     6  3880             ADD   R8, R8
+   20     6  3310             ADD   R3, R1
+   21     7  0000             NOP
+   22     7  0000             NOP
+   23     7  0000             NOP
+   24     8  3880             ADD   R8, R8
+   25     8  1630             LOAD  R6, (R3)
+   26     8  1740             LOAD  R7, (R4)
+   27     9  4410             SUB   R4, R1
+   28     9  0000             NOP
+   29     9  0000             NOP
+   30    10  3980             ADD   R9, R8
+   31    10  3A80             ADD   R10, R8
+   32    10  3B80             ADD   R11, R8
+   33    11  1C40             LOAD  R12, (R4)
+   34    11  0000             NOP
+   35    11  0000             NOP
+   36    12  3910             ADD   R9, R1
+   37    12  3A30             ADD   R10, R3
+   38    12  3B20             ADD   R11, R2
+   39    13  0000             NOP
+   40    13  0000             NOP
+   41    13  0000             NOP
+   42    14  4250             SUB   R2, R5
+   43    14  2180             STORE R1, (R8)
+   44    14  5033             JL    51
+   45    15  2690             STORE R6, (R9)
+   46    15  26A0             STORE R6, (R10)
+   47    15  3160             ADD   R1, R6
+   48    16  26B0             STORE R6, (R11)
+   49    16  4C70             SUB   R12, R7
+   50    16  2680             STORE R6, (R8)
+   51    17  2190  t1:        STORE R1, (R9)
+   52    17  0000             NOP
+   53    17  0000             NOP
+   54    18  0000             NOP
+   55    18  0000             NOP
+   56    18  0000             NOP
+   57    19  503F             JL    63
+   58    19  26A0             STORE R6, (R10)
+   59    19  26B0             STORE R6, (R11)
+   60    20  2680             STORE R6, (R8)
+   61    20  0000             NOP
+   62    20  0000             NOP
+   63    21  21A0  t2:        STORE R1, (R10)
+   64    21  3A10             ADD   R10, R1
+   65    21  0000             NOP
+   66    22  0000             NOP
+   67    22  0000             NOP
+   68    22  0000             NOP
+   69    23  47C0             SUB   R7, R12
+   70    23  504E             JL    78
+   71    23  26B0             STORE R6, (R11)
+   72    24  2680             STORE R6, (R8)
+   73    24  0000             NOP
+   74    24  0000             NOP
+   75    25  2690             STORE R6, (R9)
+   76    25  0000             NOP
+   77    25  0000             NOP
+   78    26  21A0  t3:        STORE R1, (R10)
+   79    26  27B0             STORE R7, (R11)
+   80    26  F000             HALT
+; reference model: 63 instructions executed, 3 branches taken
+; timing [predict]: cycles=31 squashed=21 taken=3 stall=0
+; timing [stall  ]: cycles=31 squashed=0 taken=3 stall=7
+; registers: R0=0000 R1=0001 R2=FFFE R3=0003 R4=0004 R5=0007 R6=0BAD R7=15A0 R8=0008 R9=0009 R10=000C R11=000D R12=7530 R13=0000 R14=0000 R15=0000
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: 0005 -> 0005  (5)
+;     2: 0007 -> 0007  (7)
+;     3: 0BAD -> 0BAD  (2989)
+;     4: 7530 -> 7530  (30000)
+;     5: 8AD0 -> 8AD0  (-30000)
+;     6: 0000 -> 0000  (0)
+;     7: 0000 -> 0000  (0)
+;     8: 0000 -> 0001  (1)   *
+;     9: 0000 -> 0001  (1)   *
+;    10: 0000 -> 0000  (0)
+;    11: 0000 -> 0001  (1)   *
+;    12: 0000 -> 0001  (1)   *
+;    13: 0000 -> 15A0  (5536)   *

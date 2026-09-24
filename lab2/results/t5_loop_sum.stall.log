@@ -1,0 +1,4 @@
+  registers: R0=0000 R1=0001 R2=0018 R3=0018 R4=0611 R5=0100 R6=0000 R7=0000 R8=0008 R9=0019 R10=0003 R11=0000 R12=0000 R13=0000 R14=0000 R15=0000
+  flags: Z='0' N='0' V='0' C='0'
+  mode=stall  cycles=58  retired=117  squashed=0  taken=7  stall=17
+TEST t5_loop_sum [stall] PASSED

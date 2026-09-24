@@ -1,0 +1,32 @@
+УБИТА  | не аннулируются более поздние команды группы с переходом
+       | не прошли: t3_jl_taken[predict], t4_flags[predict]
+УБИТА  | не сбрасывается группа на ступени OF при переходе
+       | не прошли: t3_jl_taken[predict], t4_flags[predict], t5_loop_sum[predict], t6_min_max[predict]
+УБИТА  | не отбрасывается группа, выбираемая (IF) в такте перехода
+       | не прошли: t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall], t5_loop_sum[predict], t5_loop_sum[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | PC не загружается адресом перехода
+       | не прошли: t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[stall], t5_loop_sum[predict], t5_loop_sum[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | нет передачи флагов внутри группы (JL видит только регистр флагов)
+       | не прошли: t2_jl_not_taken[predict], t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall], t5_loop_sum[predict], t5_loop_sum[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | условие перехода без учёта переполнения (только N)
+       | не прошли: t3_jl_taken[predict], t3_jl_taken[stall]
+УБИТА  | флаги не сохраняются в регистр флагов
+       | не прошли: t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall]
+УБИТА  | инверсное условие перехода (>=)
+       | не прошли: t2_jl_not_taken[predict], t2_jl_not_taken[stall], t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall], t5_loop_sum[predict], t5_loop_sum[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | режим stall: группа не обрывается после перехода
+       | не прошли: t2_jl_not_taken[stall], t3_jl_taken[stall], t4_flags[stall]
+УБИТА  | режим stall: выборка не приостанавливается
+       | не прошли: t1_arith[stall], t2_jl_not_taken[stall], t3_jl_taken[stall], t4_flags[stall], t5_loop_sum[stall], t6_min_max[stall]
+УБИТА  | режим stall: приостановка только пока переход на OF
+       | не прошли: t2_jl_not_taken[stall], t4_flags[stall], t5_loop_sum[stall], t6_min_max[stall]
+УБИТА  | SUB выполняется как ADD
+       | не прошли: t1_arith[predict], t1_arith[stall], t2_jl_not_taken[predict], t2_jl_not_taken[stall], t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | неверный флаг переполнения при вычитании
+       | не прошли: t3_jl_taken[predict], t3_jl_taken[stall]
+УБИТА  | нет передачи результата WB -> OF в том же такте
+       | не прошли: t1_arith[predict], t1_arith[stall], t2_jl_not_taken[predict], t2_jl_not_taken[stall], t3_jl_taken[predict], t3_jl_taken[stall], t4_flags[predict], t4_flags[stall], t5_loop_sum[predict], t5_loop_sum[stall], t6_min_max[predict], t6_min_max[stall]
+УБИТА  | при записи в один адрес побеждает более ранний конвейер
+       | не прошли: t1_arith[predict], t1_arith[stall]
+
+убито мутаций: 15 из 15

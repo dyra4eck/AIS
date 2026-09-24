@@ -1,0 +1,6 @@
+work/
+work_mut/
+*.cf
+*.o
+results/*.vcd
+__pycache__/

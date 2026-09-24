@@ -1,0 +1,80 @@
+; t1_arith: program 57 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  1410             LOAD  R4, (R1)
+    7     2  3210             ADD   R2, R1
+    8     2  3310             ADD   R3, R1
+    9     3  0000             NOP
+   10     3  0000             NOP
+   11     3  0000             NOP
+   12     4  3210             ADD   R2, R1
+   13     4  3330             ADD   R3, R3
+   14     4  3810             ADD   R8, R1
+   15     5  0000             NOP
+   16     5  0000             NOP
+   17     5  0000             NOP
+   18     6  1520             LOAD  R5, (R2)
+   19     6  3310             ADD   R3, R1
+   20     6  3880             ADD   R8, R8
+   21     7  0000             NOP
+   22     7  0000             NOP
+   23     7  0000             NOP
+   24     8  1630             LOAD  R6, (R3)
+   25     8  3880             ADD   R8, R8
+   26     8  3740             ADD   R7, R4
+   27     9  0000             NOP
+   28     9  0000             NOP
+   29     9  0000             NOP
+   30    10  3880             ADD   R8, R8
+   31    10  3750             ADD   R7, R5
+   32    10  4450             SUB   R4, R5
+   33    11  0000             NOP
+   34    11  0000             NOP
+   35    11  0000             NOP
+   36    12  3980             ADD   R9, R8
+   37    12  3A80             ADD   R10, R8
+   38    12  3B80             ADD   R11, R8
+   39    13  3610             ADD   R6, R1
+   40    13  4570             SUB   R5, R7
+   41    13  3C80             ADD   R12, R8
+   42    14  3A10             ADD   R10, R1
+   43    14  3B20             ADD   R11, R2
+   44    14  0000             NOP
+   45    15  2780             STORE R7, (R8)
+   46    15  3C30             ADD   R12, R3
+   47    15  2490             STORE R4, (R9)
+   48    16  0000             NOP
+   49    16  0000             NOP
+   50    16  0000             NOP
+   51    17  27A0             STORE R7, (R10)
+   52    17  26B0             STORE R6, (R11)
+   53    17  25C0             STORE R5, (R12)
+   54    18  F000             HALT
+   55    18  0000             NOP
+   56    18  0000             NOP
+; reference model: 55 instructions executed, 0 branches taken
+; timing [predict]: cycles=22 squashed=0 taken=0 stall=0
+; timing [stall  ]: cycles=22 squashed=0 taken=0 stall=1
+; registers: R0=0000 R1=0001 R2=0002 R3=0003 R4=02FE R5=FC18 R6=8000 R7=04D2 R8=0008 R9=0008 R10=0009 R11=000A R12=000B R13=0000 R14=0000 R15=0000
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: 03E8 -> 03E8  (1000)
+;     2: 00EA -> 00EA  (234)
+;     3: 7FFF -> 7FFF  (32767)
+;     4: 0000 -> 0000  (0)
+;     5: 0000 -> 0000  (0)
+;     6: 0000 -> 0000  (0)
+;     7: 0000 -> 0000  (0)
+;     8: DEAD -> 02FE  (766)   *
+;     9: DEAD -> 04D2  (1234)   *
+;    10: DEAD -> 8000  (-32768)   *
+;    11: DEAD -> FC18  (-1000)   *
+;    12: DEAD -> DEAD  (-8531)
+;    13: DEAD -> DEAD  (-8531)
+;    14: DEAD -> DEAD  (-8531)
+;    15: DEAD -> DEAD  (-8531)

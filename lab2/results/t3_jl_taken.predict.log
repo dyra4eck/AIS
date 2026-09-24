@@ -1,0 +1,4 @@
+  registers: R0=0000 R1=0001 R2=FFFE R3=0003 R4=0004 R5=0007 R6=0BAD R7=15A0 R8=0008 R9=0009 R10=000C R11=000D R12=7530 R13=0000 R14=0000 R15=0000
+  flags: Z='0' N='0' V='1' C='0'
+  mode=predict  cycles=31  retired=63  squashed=21  taken=3  stall=0
+TEST t3_jl_taken [predict] PASSED

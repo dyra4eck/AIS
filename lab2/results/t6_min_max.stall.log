@@ -1,0 +1,4 @@
+  registers: R0=0000 R1=0001 R2=0017 R3=0000 R4=0000 R5=0000 R6=012C R7=012C R8=0000 R9=FED4 R10=0004 R11=0020 R12=0021 R13=0007 R14=FFFF R15=0000
+  flags: Z='1' N='0' V='0' C='1'
+  mode=stall  cycles=108  retired=157  squashed=0  taken=16  stall=53
+TEST t6_min_max [stall] PASSED

@@ -1,0 +1,4 @@
+  registers: R0=0000 R1=0001 R2=0002 R3=0003 R4=02FE R5=FC18 R6=8000 R7=04D2 R8=0008 R9=0008 R10=0009 R11=000A R12=000B R13=0000 R14=0000 R15=0000
+  flags: Z='0' N='0' V='0' C='0'
+  mode=predict  cycles=22  retired=55  squashed=0  taken=0  stall=0
+TEST t1_arith [predict] PASSED

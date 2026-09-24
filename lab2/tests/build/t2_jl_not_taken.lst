@@ -1,0 +1,78 @@
+; t2_jl_not_taken: program 59 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  1210             LOAD  R2, (R1)
+    7     2  3310             ADD   R3, R1
+    8     2  3810             ADD   R8, R1
+    9     3  0000             NOP
+   10     3  0000             NOP
+   11     3  0000             NOP
+   12     4  3310             ADD   R3, R1
+   13     4  3880             ADD   R8, R8
+   14     4  0000             NOP
+   15     5  0000             NOP
+   16     5  0000             NOP
+   17     5  0000             NOP
+   18     6  1430             LOAD  R4, (R3)
+   19     6  3880             ADD   R8, R8
+   20     6  0000             NOP
+   21     7  0000             NOP
+   22     7  0000             NOP
+   23     7  0000             NOP
+   24     8  3880             ADD   R8, R8
+   25     8  3520             ADD   R5, R2
+   26     8  3620             ADD   R6, R2
+   27     9  3740             ADD   R7, R4
+   28     9  0000             NOP
+   29     9  0000             NOP
+   30    10  3980             ADD   R9, R8
+   31    10  3A80             ADD   R10, R8
+   32    10  3B80             ADD   R11, R8
+   33    11  0000             NOP
+   34    11  0000             NOP
+   35    11  0000             NOP
+   36    12  3910             ADD   R9, R1
+   37    12  3A30             ADD   R10, R3
+   38    12  3B30             ADD   R11, R3
+   39    13  0000             NOP
+   40    13  0000             NOP
+   41    13  0000             NOP
+   42    14  4560             SUB   R5, R6
+   43    14  5039             JL    57
+   44    14  2180             STORE R1, (R8)
+   45    15  5039             JL    57
+   46    15  4420             SUB   R4, R2
+   47    15  2190             STORE R1, (R9)
+   48    16  4270             SUB   R2, R7
+   49    16  3B10             ADD   R11, R1
+   50    16  5039             JL    57
+   51    17  21A0             STORE R1, (R10)
+   52    17  4310             SUB   R3, R1
+   53    17  5039             JL    57
+   54    18  21B0             STORE R1, (R11)
+   55    18  0000             NOP
+   56    18  F000             HALT
+   57    19  2780  fail:      STORE R7, (R8)
+   58    19  F000             HALT
+; reference model: 57 instructions executed, 0 branches taken
+; timing [predict]: cycles=22 squashed=0 taken=0 stall=0
+; timing [stall  ]: cycles=31 squashed=0 taken=0 stall=9
+; registers: R0=0000 R1=0001 R2=EA60 R3=0001 R4=15A0 R5=0000 R6=7530 R7=8AD0 R8=0008 R9=0009 R10=000A R11=000B R12=0000 R13=0000 R14=0000 R15=0000
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: 7530 -> 7530  (30000)
+;     2: 8AD0 -> 8AD0  (-30000)
+;     3: 0000 -> 0000  (0)
+;     4: 0000 -> 0000  (0)
+;     5: 0000 -> 0000  (0)
+;     6: 0000 -> 0000  (0)
+;     7: 0000 -> 0000  (0)
+;     8: 0000 -> 0001  (1)   *
+;     9: 0000 -> 0001  (1)   *
+;    10: 0000 -> 0001  (1)   *
+;    11: 0000 -> 0001  (1)   *

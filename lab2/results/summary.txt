@@ -1,0 +1,26 @@
+    mode=predict  cycles=22  retired=55  squashed=0  taken=0  stall=0
+  TEST t1_arith [predict] PASSED
+    mode=stall  cycles=22  retired=55  squashed=0  taken=0  stall=1
+  TEST t1_arith [stall] PASSED
+    mode=predict  cycles=22  retired=57  squashed=0  taken=0  stall=0
+  TEST t2_jl_not_taken [predict] PASSED
+    mode=stall  cycles=31  retired=57  squashed=0  taken=0  stall=9
+  TEST t2_jl_not_taken [stall] PASSED
+    mode=predict  cycles=31  retired=63  squashed=21  taken=3  stall=0
+  TEST t3_jl_taken [predict] PASSED
+    mode=stall  cycles=31  retired=63  squashed=0  taken=3  stall=7
+  TEST t3_jl_taken [stall] PASSED
+    mode=predict  cycles=32  retired=58  squashed=29  taken=4  stall=0
+  TEST t4_flags [predict] PASSED
+    mode=stall  cycles=37  retired=58  squashed=0  taken=4  stall=13
+  TEST t4_flags [stall] PASSED
+    mode=predict  cycles=56  retired=117  squashed=42  taken=7  stall=0
+  TEST t5_loop_sum [predict] PASSED
+    mode=stall  cycles=58  retired=117  squashed=0  taken=7  stall=17
+  TEST t5_loop_sum [stall] PASSED
+    mode=predict  cycles=88  retired=157  squashed=96  taken=16  stall=0
+  TEST t6_min_max [predict] PASSED
+    mode=stall  cycles=108  retired=157  squashed=0  taken=16  stall=53
+  TEST t6_min_max [stall] PASSED
+
+passed: 12, failed: 0
