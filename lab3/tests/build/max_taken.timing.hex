@@ -1,0 +1,8 @@
+0050   #   0: predict cycles
+0098   #   1: predict squashed
+0018   #   2: predict taken
+0000   #   3: predict stall
+0050   #   4: stall cycles
+0000   #   5: stall squashed
+0018   #   6: stall taken
+0031   #   7: stall stall

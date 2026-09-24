@@ -1,0 +1,168 @@
+; min_all: program 159 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  3210             ADD   R2, R1
+    7     2  3310             ADD   R3, R1
+    8     2  3410             ADD   R4, R1
+    9     3  3510             ADD   R5, R1
+   10     3  3610             ADD   R6, R1
+   11     3  3710             ADD   R7, R1
+   12     4  3210             ADD   R2, R1
+   13     4  3310             ADD   R3, R1
+   14     4  3410             ADD   R4, R1
+   15     5  3510             ADD   R5, R1
+   16     5  3610             ADD   R6, R1
+   17     5  3710             ADD   R7, R1
+   18     6  3210             ADD   R2, R1
+   19     6  3310             ADD   R3, R1
+   20     6  3410             ADD   R4, R1
+   21     7  3510             ADD   R5, R1
+   22     7  3610             ADD   R6, R1
+   23     7  3710             ADD   R7, R1
+   24     8  3210             ADD   R2, R1
+   25     8  3310             ADD   R3, R1
+   26     8  3410             ADD   R4, R1
+   27     9  3510             ADD   R5, R1
+   28     9  3610             ADD   R6, R1
+   29     9  3710             ADD   R7, R1
+   30    10  3210             ADD   R2, R1
+   31    10  3310             ADD   R3, R1
+   32    10  3410             ADD   R4, R1
+   33    11  3510             ADD   R5, R1
+   34    11  3610             ADD   R6, R1
+   35    11  3710             ADD   R7, R1
+   36    12  4210             SUB   R2, R1
+   37    12  4310             SUB   R3, R1
+   38    12  4410             SUB   R4, R1
+   39    13  4510             SUB   R5, R1
+   40    13  4610             SUB   R6, R1
+   41    13  4710             SUB   R7, R1
+   42    14  4210             SUB   R2, R1
+   43    14  4310             SUB   R3, R1
+   44    14  4410             SUB   R4, R1
+   45    15  4510             SUB   R5, R1
+   46    15  4610             SUB   R6, R1
+   47    15  4710             SUB   R7, R1
+   48    16  4210             SUB   R2, R1
+   49    16  4310             SUB   R3, R1
+   50    16  4410             SUB   R4, R1
+   51    17  4510             SUB   R5, R1
+   52    17  4610             SUB   R6, R1
+   53    17  4710             SUB   R7, R1
+   54    18  4210             SUB   R2, R1
+   55    18  4310             SUB   R3, R1
+   56    18  4410             SUB   R4, R1
+   57    19  4510             SUB   R5, R1
+   58    19  4610             SUB   R6, R1
+   59    19  4710             SUB   R7, R1
+   60    20  4210             SUB   R2, R1
+   61    20  4310             SUB   R3, R1
+   62    20  4410             SUB   R4, R1
+   63    21  4510             SUB   R5, R1
+   64    21  4610             SUB   R6, R1
+   65    21  4710             SUB   R7, R1
+   66    22  1200             LOAD  R2, (R0)
+   67    22  1300             LOAD  R3, (R0)
+   68    22  1400             LOAD  R4, (R0)
+   69    23  1500             LOAD  R5, (R0)
+   70    23  1600             LOAD  R6, (R0)
+   71    23  1700             LOAD  R7, (R0)
+   72    24  1200             LOAD  R2, (R0)
+   73    24  1300             LOAD  R3, (R0)
+   74    24  1400             LOAD  R4, (R0)
+   75    25  1500             LOAD  R5, (R0)
+   76    25  1600             LOAD  R6, (R0)
+   77    25  1700             LOAD  R7, (R0)
+   78    26  1200             LOAD  R2, (R0)
+   79    26  1300             LOAD  R3, (R0)
+   80    26  1400             LOAD  R4, (R0)
+   81    27  1500             LOAD  R5, (R0)
+   82    27  1600             LOAD  R6, (R0)
+   83    27  1700             LOAD  R7, (R0)
+   84    28  1200             LOAD  R2, (R0)
+   85    28  1300             LOAD  R3, (R0)
+   86    28  1400             LOAD  R4, (R0)
+   87    29  1500             LOAD  R5, (R0)
+   88    29  1600             LOAD  R6, (R0)
+   89    29  1700             LOAD  R7, (R0)
+   90    30  1200             LOAD  R2, (R0)
+   91    30  1300             LOAD  R3, (R0)
+   92    30  1400             LOAD  R4, (R0)
+   93    31  1500             LOAD  R5, (R0)
+   94    31  1600             LOAD  R6, (R0)
+   95    31  1700             LOAD  R7, (R0)
+   96    32  2100             STORE R1, (R0)
+   97    32  2100             STORE R1, (R0)
+   98    32  2100             STORE R1, (R0)
+   99    33  2100             STORE R1, (R0)
+  100    33  2100             STORE R1, (R0)
+  101    33  2100             STORE R1, (R0)
+  102    34  2100             STORE R1, (R0)
+  103    34  2100             STORE R1, (R0)
+  104    34  2100             STORE R1, (R0)
+  105    35  2100             STORE R1, (R0)
+  106    35  2100             STORE R1, (R0)
+  107    35  2100             STORE R1, (R0)
+  108    36  2100             STORE R1, (R0)
+  109    36  2100             STORE R1, (R0)
+  110    36  2100             STORE R1, (R0)
+  111    37  2100             STORE R1, (R0)
+  112    37  2100             STORE R1, (R0)
+  113    37  2100             STORE R1, (R0)
+  114    38  2100             STORE R1, (R0)
+  115    38  2100             STORE R1, (R0)
+  116    38  2100             STORE R1, (R0)
+  117    39  2100             STORE R1, (R0)
+  118    39  2100             STORE R1, (R0)
+  119    39  2100             STORE R1, (R0)
+  120    40  2100             STORE R1, (R0)
+  121    40  2100             STORE R1, (R0)
+  122    40  2100             STORE R1, (R0)
+  123    41  2100             STORE R1, (R0)
+  124    41  2100             STORE R1, (R0)
+  125    41  2100             STORE R1, (R0)
+  126    42  0000             NOP
+  127    42  0000             NOP
+  128    42  0000             NOP
+  129    43  0000             NOP
+  130    43  0000             NOP
+  131    43  0000             NOP
+  132    44  0000             NOP
+  133    44  0000             NOP
+  134    44  0000             NOP
+  135    45  0000             NOP
+  136    45  0000             NOP
+  137    45  0000             NOP
+  138    46  0000             NOP
+  139    46  0000             NOP
+  140    46  0000             NOP
+  141    47  0000             NOP
+  142    47  0000             NOP
+  143    47  0000             NOP
+  144    48  0000             NOP
+  145    48  0000             NOP
+  146    48  0000             NOP
+  147    49  0000             NOP
+  148    49  0000             NOP
+  149    49  0000             NOP
+  150    50  0000             NOP
+  151    50  0000             NOP
+  152    50  0000             NOP
+  153    51  0000             NOP
+  154    51  0000             NOP
+  155    51  0000             NOP
+  156    52  F000             HALT
+  157    52  0000             NOP
+  158    52  0000             NOP
+; reference model: 157 instructions executed, 0 branches taken
+; timing [predict]: cycles=56 squashed=0 taken=0 stall=0
+; timing [stall  ]: cycles=56 squashed=0 taken=0 stall=1
+; registers: R0=0000 R1=0001 R2=0001 R3=0001 R4=0001 R5=0001 R6=0001 R7=0001 R8=0000 R9=0000 R10=0000 R11=0000 R12=0000 R13=0000 R14=0000 R15=0000
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: FFFF -> FFFF  (-1)

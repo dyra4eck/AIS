@@ -13,6 +13,7 @@
     NAME.regs.hex    - ожидаемые значения регистров R0..R15 после завершения
     NAME.timing.hex  - ожидаемые значения счётчиков (такты, аннулированные
                        команды, переходы, простои) для режимов predict и stall
+    NAME.regions     - измеряемые участки программы (адрес начала, конца, имя)
     NAME.lst         - листинг: адрес, группа выборки, код, мнемоника;
                        итоговые регистры и число выполненных команд
 
@@ -31,6 +32,8 @@
     HALT
     .word v1, v2, ...         слова данных (числа или метки)
     .fill n, v                n слов со значением v
+    .region имя / .endregion  участок программы, время выполнения которого
+                              измеряет тестовое окружение (ЛР3)
 """
 import argparse
 import os
@@ -43,6 +46,7 @@ NPIPE = 3
 MEM = 256
 MASK = 0xFFFF
 TEXT_LABELS = set()   # метки секции .text (для листинга)
+REGIONS = []          # измеряемые участки: [имя, первый адрес, последний адрес]
 
 
 def err(ln, msg):
@@ -97,7 +101,15 @@ def parse(path):
             parts = text.split(None, 1)
             op, args = parts[0].upper(), (parts[1] if len(parts) > 1 else "")
             argv = [a.strip() for a in args.split(",")] if args else []
-            if op in (".TEXT", ".DATA"):
+            if op == ".REGION":
+                if emit:
+                    REGIONS.append([argv[0] if argv else f"r{len(REGIONS)}", pc["text"], None])
+            elif op == ".ENDREGION":
+                if emit:
+                    if not REGIONS or REGIONS[-1][2] is not None:
+                        err(ln, ".endregion without .region")
+                    REGIONS[-1][2] = pc["text"] - 1
+            elif op in (".TEXT", ".DATA"):
                 sect = op[1:].lower()
             elif op == ".ORG":
                 pc[sect] = value(argv[0], labels, ln)
@@ -295,6 +307,12 @@ def main():
     write_hex(base + ".dmem.hex", dmem, upto=dlen)
     write_hex(base + ".expect.hex", mem, upto=dlen)
     write_hex(base + ".regs.hex", regs, {i: f"R{i}" for i in range(16)}, 16)
+    with open(base + ".regions", "w") as f:
+        f.write("# start end name - участки программы для измерения времени (.region)\n")
+        for name_r, a, b in REGIONS:
+            if b is None:
+                sys.exit(f"region {name_r}: missing .endregion")
+            f.write(f"{a:04X} {b:04X} {name_r}\n")
     tp, ts = timing(imem, dmem, True), timing(imem, dmem, False)
     names = ["cycles", "squashed", "taken", "stall"]
     write_hex(base + ".timing.hex", list(tp) + list(ts),

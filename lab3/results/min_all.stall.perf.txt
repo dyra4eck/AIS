@@ -1,0 +1,13 @@
+=== min_all [stall]  cycles=56  retired=157  squashed=0  taken=0  stall=1
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        35      4      4      0      0      4      4   4.00
+LOAD       31      4      4      0      0      4      4   4.00
+STORE      30      4      4      0      0      4      4   4.00
+ADD        30      4      4      0      0      4      4   4.00
+SUB        30      4      4      0      0      4      4   4.00
+region add30                    T=13 N=30 IPC=2.31 CPI=0.43
+region sub30                    T=13 N=30 IPC=2.31 CPI=0.43
+region load30                   T=13 N=30 IPC=2.31 CPI=0.43
+region store30                  T=13 N=30 IPC=2.31 CPI=0.43
+region nop30                    T=13 N=30 IPC=2.31 CPI=0.43
+TEST min_all [stall] PASSED

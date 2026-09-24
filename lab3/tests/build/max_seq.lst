@@ -1,0 +1,74 @@
+; max_seq: program 65 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  3510             ADD   R5, R1
+    7     2  3610             ADD   R6, R1
+    8     2  3F10             ADD   R15, R1
+    9     3  0000             NOP
+   10     3  0000             NOP
+   11     3  0000             NOP
+   12     4  503F             JL    63
+   13     4  3500             ADD   R5, R0
+   14     4  503F             JL    63
+   15     5  4600             SUB   R6, R0
+   16     5  503F             JL    63
+   17     5  1700             LOAD  R7, (R0)
+   18     6  503F             JL    63
+   19     6  2100             STORE R1, (R0)
+   20     6  503F             JL    63
+   21     7  0000             NOP
+   22     7  503F             JL    63
+   23     7  503F             JL    63
+   24     8  503F             JL    63
+   25     8  3500             ADD   R5, R0
+   26     8  503F             JL    63
+   27     9  4600             SUB   R6, R0
+   28     9  503F             JL    63
+   29     9  1700             LOAD  R7, (R0)
+   30    10  503F             JL    63
+   31    10  2100             STORE R1, (R0)
+   32    10  503F             JL    63
+   33    11  0000             NOP
+   34    11  503F             JL    63
+   35    11  503F             JL    63
+   36    12  503F             JL    63
+   37    12  3500             ADD   R5, R0
+   38    12  503F             JL    63
+   39    13  4600             SUB   R6, R0
+   40    13  503F             JL    63
+   41    13  1700             LOAD  R7, (R0)
+   42    14  503F             JL    63
+   43    14  2100             STORE R1, (R0)
+   44    14  503F             JL    63
+   45    15  0000             NOP
+   46    15  503F             JL    63
+   47    15  503F             JL    63
+   48    16  503F             JL    63
+   49    16  3500             ADD   R5, R0
+   50    16  503F             JL    63
+   51    17  4600             SUB   R6, R0
+   52    17  503F             JL    63
+   53    17  1700             LOAD  R7, (R0)
+   54    18  503F             JL    63
+   55    18  2100             STORE R1, (R0)
+   56    18  503F             JL    63
+   57    19  0000             NOP
+   58    19  503F             JL    63
+   59    19  503F             JL    63
+   60    20  F000             HALT
+   61    20  0000             NOP
+   62    20  0000             NOP
+   63    21  2110  fail:      STORE R1, (R1)
+   64    21  F000             HALT
+; reference model: 61 instructions executed, 0 branches taken
+; timing [predict]: cycles=24 squashed=0 taken=0 stall=0
+; timing [stall  ]: cycles=92 squashed=0 taken=0 stall=57
+; registers: R0=0000 R1=0001 R2=0000 R3=0000 R4=0000 R5=0001 R6=0001 R7=0001 R8=0000 R9=0000 R10=0000 R11=0000 R12=0000 R13=0000 R14=0000 R15=0001
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: FFFF -> FFFF  (-1)

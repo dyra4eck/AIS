@@ -17,6 +17,7 @@ package cpu_pkg is
     constant DW    : positive := 16;  -- разрядность данных
     constant IW    : positive := 16;  -- разрядность команды
     constant IAW   : positive := 8;   -- разрядность адреса памяти команд
+    constant TW    : positive := 32;  -- разрядность метки времени (для измерений)
     constant DAW   : positive := 8;   -- разрядность адреса памяти данных
 
     subtype word_t    is std_logic_vector(DW-1 downto 0);
@@ -25,6 +26,7 @@ package cpu_pkg is
     subtype daddr_t   is unsigned(DAW-1 downto 0);
     subtype reg_idx_t is unsigned(3 downto 0);
     subtype opcode_t  is std_logic_vector(3 downto 0);
+    subtype tstamp_t  is unsigned(TW-1 downto 0);  -- номер такта (отладка, измерения)
 
     -- Коды операций (биты 15..12 команды)
     constant OP_NOP   : opcode_t := "0000";  -- NOP
@@ -53,8 +55,9 @@ package cpu_pkg is
         valid : std_logic;
         pc    : iaddr_t;
         instr : instr_t;
+        tf    : tstamp_t;   -- такт выборки команды (только для измерений)
     end record;
-    constant IF_BUBBLE : if_slot_t := ('0', (others => '0'), (others => '0'));
+    constant IF_BUBBLE : if_slot_t := ('0', (others => '0'), (others => '0'), (others => '0'));
 
     -- Регистр между ступенями "выборка операнда" и "вычисление результата"
     type ex_slot_t is record
@@ -66,10 +69,11 @@ package cpu_pkg is
         a      : word_t;     -- значение регистра операнда1
         b      : word_t;     -- значение регистра операнда2
         target : iaddr_t;    -- адрес перехода (JL)
+        tf     : tstamp_t;   -- такт выборки команды
     end record;
     constant EX_BUBBLE : ex_slot_t := ('0', (others => '0'), OP_NOP, (others => '0'),
                                        (others => '0'), (others => '0'), (others => '0'),
-                                       (others => '0'));
+                                       (others => '0'), (others => '0'));
 
     -- Регистр между ступенями "вычисление результата" и "запись результата"
     type wb_slot_t is record
@@ -79,9 +83,10 @@ package cpu_pkg is
         rd     : reg_idx_t;  -- регистр результата (ADD/SUB/LOAD)
         result : word_t;     -- результат (ADD/SUB/LOAD) или записываемые данные (STORE)
         addr   : daddr_t;    -- адрес в памяти данных (STORE)
+        tf     : tstamp_t;   -- такт выборки команды
     end record;
     constant WB_BUBBLE : wb_slot_t := ('0', (others => '0'), OP_NOP, (others => '0'),
-                                       (others => '0'), (others => '0'));
+                                       (others => '0'), (others => '0'), (others => '0'));
 
     type if_bundle_t is array (0 to NPIPE-1) of if_slot_t;
     type ex_bundle_t is array (0 to NPIPE-1) of ex_slot_t;

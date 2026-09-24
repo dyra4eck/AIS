@@ -1,0 +1,8 @@
+0018   #   0: predict cycles
+0000   #   1: predict squashed
+0000   #   2: predict taken
+0000   #   3: predict stall
+005C   #   4: stall cycles
+0000   #   5: stall squashed
+0000   #   6: stall taken
+0039   #   7: stall stall

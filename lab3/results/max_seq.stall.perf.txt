@@ -1,0 +1,10 @@
+=== max_seq [stall]  cycles=92  retired=61  squashed=0  taken=0  stall=57
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        12      4      4      0      3      4      7   5.00
+LOAD        5      4      4      0      3      4      7   6.40
+STORE       4      4      4      3      3      7      7   7.00
+ADD         7      4      4      0      3      4      7   5.71
+SUB         4      4      4      3      3      7      7   7.00
+JL         28      4      4      0      3      4      7   4.75
+region pairs                    T=85 N=48 IPC=0.56 CPI=1.77
+TEST max_seq [stall] PASSED

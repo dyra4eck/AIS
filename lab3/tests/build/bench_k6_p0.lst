@@ -1,0 +1,102 @@
+; bench_k6_p0: program 93 words
+; addr  grp  code  instruction
+    0     0  1100             LOAD  R1, (R0)
+    1     0  0000             NOP
+    2     0  0000             NOP
+    3     1  0000             NOP
+    4     1  0000             NOP
+    5     1  0000             NOP
+    6     2  1C10             LOAD  R12, (R1)
+    7     2  1E10             LOAD  R14, (R1)
+    8     2  3D10             ADD   R13, R1
+    9     3  3F10             ADD   R15, R1
+   10     3  0000             NOP
+   11     3  0000             NOP
+   12     4  0000             NOP
+   13     4  0000             NOP
+   14     4  0000             NOP
+   15     5  0000             NOP
+   16     5  0000             NOP
+   17     5  0000             NOP
+   18     6  3210  blk0:      ADD   R2, R1
+   19     6  3310             ADD   R3, R1
+   20     6  3410             ADD   R4, R1
+   21     7  3510             ADD   R5, R1
+   22     7  3D00             ADD   R13, R0
+   23     7  5018             JL    24
+   24     8  3210  blk1:      ADD   R2, R1
+   25     8  3310             ADD   R3, R1
+   26     8  3410             ADD   R4, R1
+   27     9  3510             ADD   R5, R1
+   28     9  3F00             ADD   R15, R0
+   29     9  501E             JL    30
+   30    10  3210  blk2:      ADD   R2, R1
+   31    10  3310             ADD   R3, R1
+   32    10  3410             ADD   R4, R1
+   33    11  3510             ADD   R5, R1
+   34    11  3D00             ADD   R13, R0
+   35    11  5024             JL    36
+   36    12  3210  blk3:      ADD   R2, R1
+   37    12  3310             ADD   R3, R1
+   38    12  3410             ADD   R4, R1
+   39    13  3510             ADD   R5, R1
+   40    13  3F00             ADD   R15, R0
+   41    13  502A             JL    42
+   42    14  3210  blk4:      ADD   R2, R1
+   43    14  3310             ADD   R3, R1
+   44    14  3410             ADD   R4, R1
+   45    15  3510             ADD   R5, R1
+   46    15  3D00             ADD   R13, R0
+   47    15  5030             JL    48
+   48    16  3210  blk5:      ADD   R2, R1
+   49    16  3310             ADD   R3, R1
+   50    16  3410             ADD   R4, R1
+   51    17  3510             ADD   R5, R1
+   52    17  3F00             ADD   R15, R0
+   53    17  5036             JL    54
+   54    18  3210  blk6:      ADD   R2, R1
+   55    18  3310             ADD   R3, R1
+   56    18  3410             ADD   R4, R1
+   57    19  3510             ADD   R5, R1
+   58    19  3D00             ADD   R13, R0
+   59    19  503C             JL    60
+   60    20  3210  blk7:      ADD   R2, R1
+   61    20  3310             ADD   R3, R1
+   62    20  3410             ADD   R4, R1
+   63    21  3510             ADD   R5, R1
+   64    21  3F00             ADD   R15, R0
+   65    21  5042             JL    66
+   66    22  3210  blk8:      ADD   R2, R1
+   67    22  3310             ADD   R3, R1
+   68    22  3410             ADD   R4, R1
+   69    23  3510             ADD   R5, R1
+   70    23  3D00             ADD   R13, R0
+   71    23  5048             JL    72
+   72    24  3210  blk9:      ADD   R2, R1
+   73    24  3310             ADD   R3, R1
+   74    24  3410             ADD   R4, R1
+   75    25  3510             ADD   R5, R1
+   76    25  3F00             ADD   R15, R0
+   77    25  504E             JL    78
+   78    26  3210  blk10:     ADD   R2, R1
+   79    26  3310             ADD   R3, R1
+   80    26  3410             ADD   R4, R1
+   81    27  3510             ADD   R5, R1
+   82    27  3D00             ADD   R13, R0
+   83    27  5054             JL    84
+   84    28  3210  blk11:     ADD   R2, R1
+   85    28  3310             ADD   R3, R1
+   86    28  3410             ADD   R4, R1
+   87    29  3510             ADD   R5, R1
+   88    29  3F00             ADD   R15, R0
+   89    29  505A             JL    90
+   90    30  F000  done:      HALT
+   91    30  0000             NOP
+   92    30  0000             NOP
+; reference model: 91 instructions executed, 0 branches taken
+; timing [predict]: cycles=34 squashed=0 taken=0 stall=0
+; timing [stall  ]: cycles=58 squashed=0 taken=0 stall=25
+; registers: R0=0000 R1=0001 R2=000C R3=000C R4=000C R5=000C R6=0000 R7=0000 R8=0000 R9=0000 R10=0000 R11=0000 R12=FFFF R13=0001 R14=FFFF R15=0001
+; data memory (addr: before -> after):
+;     0: 0001 -> 0001  (1)
+;     1: FFFF -> FFFF  (-1)

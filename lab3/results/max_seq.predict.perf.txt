@@ -1,0 +1,10 @@
+=== max_seq [predict]  cycles=24  retired=61  squashed=0  taken=0  stall=0
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        12      4      4      0      0      4      4   4.00
+LOAD        5      4      4      0      0      4      4   4.00
+STORE       4      4      4      0      0      4      4   4.00
+ADD         7      4      4      0      0      4      4   4.00
+SUB         4      4      4      0      0      4      4   4.00
+JL         28      4      4      0      0      4      4   4.00
+region pairs                    T=19 N=48 IPC=2.53 CPI=0.40
+TEST max_seq [predict] PASSED

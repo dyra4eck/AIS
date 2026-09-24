@@ -1,0 +1,8 @@
+=== min_jl [predict]  cycles=17  retired=40  squashed=0  taken=0  stall=0
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP         7      4      4      0      0      4      4   4.00
+LOAD        1      4      4      0      0      4      4   4.00
+ADD         1      4      4      0      0      4      4   4.00
+JL         30      4      4      0      0      4      4   4.00
+region jl30                     T=13 N=30 IPC=2.31 CPI=0.43
+TEST min_jl [predict] PASSED

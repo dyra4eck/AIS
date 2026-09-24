@@ -1,0 +1,10 @@
+=== max_taken [predict]  cycles=80  retired=77  squashed=152  taken=24  stall=0
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        32      4      4      0      2      4      6   4.25
+LOAD        5      4      4      0      2      4      6   5.60
+STORE       4      4      4      2      2      6      6   6.00
+ADD         4      4      4      0      2      4      6   5.50
+SUB         7      4      4      0      2      4      6   5.14
+JL         24      4      4      0      2      4      6   4.33
+region chain                    T=73 N=64 IPC=0.88 CPI=1.14
+TEST max_taken [predict] PASSED

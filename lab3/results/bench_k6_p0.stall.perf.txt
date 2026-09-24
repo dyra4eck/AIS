@@ -1,0 +1,8 @@
+=== bench_k6_p0 [stall]  cycles=58  retired=91  squashed=0  taken=0  stall=25
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        13      4      4      0      0      4      4   4.00
+LOAD        3      4      4      0      0      4      4   4.00
+ADD        62      4      4      0      2      4      6   4.35
+JL         12      4      4      0      0      4      4   4.00
+region blocks                   T=49 N=72 IPC=1.47 CPI=0.68
+TEST bench_k6_p0 [stall] PASSED

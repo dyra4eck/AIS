@@ -27,7 +27,8 @@ entity cpu_system is
         cnt_retired  : out unsigned(31 downto 0);
         cnt_squashed : out unsigned(31 downto 0);
         cnt_taken    : out unsigned(31 downto 0);
-        cnt_stall    : out unsigned(31 downto 0)
+        cnt_stall    : out unsigned(31 downto 0);
+        dbg_retire   : out wb_bundle_t
     );
 end entity;
 
@@ -50,7 +51,8 @@ begin
             halted => halted, dbg_pc => open, dbg_regs => dbg_regs,
             dbg_flags => dbg_flags, dbg_hazard => dbg_hazard,
             cnt_cycles => cnt_cycles, cnt_retired => cnt_retired,
-            cnt_squashed => cnt_squashed, cnt_taken => cnt_taken, cnt_stall => cnt_stall);
+            cnt_squashed => cnt_squashed, cnt_taken => cnt_taken, cnt_stall => cnt_stall,
+            dbg_retire => dbg_retire);
 
     im : entity work.imem
         generic map (INIT_FILE => IMEM_FILE)

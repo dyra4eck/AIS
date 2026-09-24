@@ -65,7 +65,8 @@ begin
             dbg_addr => dbg_addr, dbg_data => dbg_data,
             dbg_regs => dbg_regs, dbg_flags => dbg_flags, dbg_hazard => dbg_hazard,
             cnt_cycles => cnt_cycles, cnt_retired => cnt_retired,
-            cnt_squashed => cnt_squashed, cnt_taken => cnt_taken, cnt_stall => cnt_stall);
+            cnt_squashed => cnt_squashed, cnt_taken => cnt_taken, cnt_stall => cnt_stall,
+            dbg_retire => open);
 
     process
         file fo          : text;

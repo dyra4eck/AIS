@@ -1,0 +1,8 @@
+=== bench_k12_p0 [predict]  cycles=34  retired=91  squashed=0  taken=0  stall=0
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP        13      4      4      0      0      4      4   4.00
+LOAD        3      4      4      0      0      4      4   4.00
+ADD        68      4      4      0      0      4      4   4.00
+JL          6      4      4      0      0      4      4   4.00
+region blocks                   T=27 N=72 IPC=2.67 CPI=0.38
+TEST bench_k12_p0 [predict] PASSED

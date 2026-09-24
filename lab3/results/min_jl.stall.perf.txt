@@ -1,0 +1,8 @@
+=== min_jl [stall]  cycles=97  retired=40  squashed=0  taken=0  stall=61
+type    count  L min  L max  W min  W max  T min  T max  T avg
+NOP         7      4      4      0      0      4      4   4.00
+LOAD        1      4      4      0      0      4      4   4.00
+ADD         1      4      4      0      0      4      4   4.00
+JL         30      4      4      0      3      4      7   6.90
+region jl30                     T=91 N=30 IPC=0.33 CPI=3.03
+TEST min_jl [stall] PASSED

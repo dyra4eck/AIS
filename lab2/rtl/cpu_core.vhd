@@ -74,7 +74,10 @@ entity cpu_core is
         cnt_retired  : out unsigned(31 downto 0);  -- завершённые команды (включая NOP)
         cnt_squashed : out unsigned(31 downto 0);  -- аннулированные команды неверного пути
         cnt_taken    : out unsigned(31 downto 0);  -- выполненные переходы
-        cnt_stall    : out unsigned(31 downto 0)   -- такты приостановки выборки
+        cnt_stall    : out unsigned(31 downto 0);  -- такты приостановки выборки
+        -- команды на ступени WB (завершаемые в текущем такте) с тактом выборки -
+        -- для измерения времени выполнения команд в тестовом окружении
+        dbg_retire   : out wb_bundle_t
     );
 end entity;
 
@@ -129,7 +132,7 @@ begin
         variable n_ret, n_sq, n_tk : natural;
         variable hz        : boolean;
         -- pragma translate_off
-        file     tf        : text;
+        file     trace_f   : text;
         variable tl        : line;
         variable topen     : boolean := false;
         variable ev        : line;
@@ -203,6 +206,7 @@ begin
                             wb_n(s).pc    := of_ex(s).pc;
                             wb_n(s).op    := op;
                             wb_n(s).rd    := of_ex(s).r1;
+                            wb_n(s).tf    := of_ex(s).tf;
                             case op is
                                 when OP_ADD | OP_SUB =>
                                     alu(op, of_ex(s).a, of_ex(s).b, res, fl);
@@ -274,6 +278,7 @@ begin
                             ex_n(s).a      := rf(to_integer(r1));
                             ex_n(s).b      := rf(to_integer(r2));
                             ex_n(s).target := unsigned(if_of(s).instr(IAW-1 downto 0));
+                            ex_n(s).tf     := if_of(s).tf;
 
                             -- pragma translate_off
                             -- монитор: конфликт по данным через регистры
@@ -330,7 +335,7 @@ begin
                         cut := NPIPE;
                         for s in 0 to NPIPE-1 loop
                             if s < cut then
-                                if_n(s) := ('1', pc + s, imem_data(s));
+                                if_n(s) := ('1', pc + s, imem_data(s), c_cycles);
                                 if not PREDICT_NOT_TAKEN and is_ctrl(opcode_of(imem_data(s))) then
                                     cut := s + 1;   -- группа обрывается после перехода
                                 end if;
@@ -345,9 +350,9 @@ begin
                 -- трасса: состояние ступеней в этом такте
                 if TRACE_FILE /= "" then
                     if not topen then
-                        file_open(tf, TRACE_FILE, write_mode);
+                        file_open(trace_f, TRACE_FILE, write_mode);
                         write(tl, string'("cycle |       IF        |       OF        |       EX        |       WB        | event"));
-                        writeline(tf, tl);
+                        writeline(trace_f, tl);
                         topen := true;
                     end if;
                     write(tl, integer'image(to_integer(c_cycles)), right, 5);
@@ -385,7 +390,7 @@ begin
                     if halt_wb then
                         write(tl, string'("HALT in WB: done"));
                     end if;
-                    writeline(tf, tl);
+                    writeline(trace_f, tl);
                 end if;
                 -- pragma translate_on
 
@@ -414,5 +419,6 @@ begin
     cnt_squashed <= c_squashed;
     cnt_taken    <= c_taken;
     cnt_stall    <= c_stall;
+    dbg_retire   <= ex_wb;
 
 end architecture;
